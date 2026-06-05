@@ -1808,6 +1808,23 @@
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
+            // Collect form data
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const categorySelect = document.getElementById('form-category');
+            const categoryText = categorySelect.options[categorySelect.selectedIndex].text;
+            const message = document.getElementById('form-message').value;
+
+            // Construct mailto link
+            const recipient = 'service@varits.us';
+            const subject = `Inquiry from ${name} - ${categoryText}`;
+            const body = `Name: ${name}\nEmail: ${email}\nService Focus Area: ${categoryText}\n\nMessage Details:\n${message}`;
+
+            const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            // Open the default mail client
+            window.location.href = mailtoUrl;
+
             // Show custom toast alert
             toast.classList.add('show');
 
