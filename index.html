@@ -1656,8 +1656,8 @@
             </svg>
         </div>
         <div>
-            <div class="toast-title">Request Transmitted</div>
-            <div class="toast-desc">Varits Advisory Team will contact you shortly.</div>
+            <div class="toast-title">Submit via Email Client</div>
+            <div class="toast-desc">Please click "Send" in your email client to submit your request. A representative will review and contact you shortly.</div>
         </div>
     </div>
 
@@ -1822,19 +1822,21 @@
 
             const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-            // Open the default mail client
-            window.location.href = mailtoUrl;
-
             // Show custom toast alert
             toast.classList.add('show');
 
             // Reset fields
             contactForm.reset();
 
-            // Auto hide toast
+            // Delay opening the default mail client by 3.5 seconds
+            setTimeout(() => {
+                window.location.href = mailtoUrl;
+            }, 3500);
+
+            // Auto hide toast after 8 seconds
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 4500);
+            }, 8000);
         });
     </script>
 </body>
