@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varits.us | Enterprise Architecture & Tech Consulting</title>
+    <meta name="description"
+        content="Varits.us is a premium technology consulting partner specializing in Enterprise Architecture setup, custom solution build & support, and strategic IT staffing.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* CSS Design System Tokens */
+        :root {
+            --bg-color: #0b0f19;
+            --bg-light: #121826;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --primary: #00F2FE;
+            /* Tech Cyan */
+            --primary-rgb: 0, 242, 254;
+            --secondary: #7F00FF;
+            /* Tech Indigo */
+            --secondary-rgb: 127, 0, 255;
+            --accent: #4FACFE;
+            /* Tech Blue */
+            --text-main: #f3f4f6;
+            /* High-contrast off-white */
+            --text-muted: #9ca3af;
+            /* Neutral gray */
+            --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --glow-primary: 0 0 20px rgba(0, 242, 254, 0.15);
+            --glow-secondary: 0 0 20px rgba(127, 0, 255, 0.15);
+        }
+
+        /* Reset & Base Styles */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            background-color: var(--bg-color);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Background grid/glow effects */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .bg-glow-1 {
+            position: fixed;
+            top: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .bg-glow-2 {
+            position: fixed;
+            bottom: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(127, 0, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Typography styling */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* Gradient Text Utility */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Interactive Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.01em;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            opacity: 0;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--glow-secondary);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(127, 0, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            box-shadow: var(--glow-primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 15, 25, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(11, 15, 25, 0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 0.5rem 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+            transition: var(--transition);
+        }
+
+        header.scrolled .nav-wrapper {
+            height: 70px;
+        }
+
+        /* Modern Logo Placeholder styling */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+        }
+
+        .logo-symbol {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: var(--glow-primary);
+        }
+
+        .logo-symbol::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: var(--bg-color);
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        .logo-symbol svg {
+            width: 20px;
+            height: 20px;
+            fill: url(#logo-grad);
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-text {
+            background: linear-gradient(135deg, #fff 40%, #a2a6b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-tld {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        /* Nav List */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.25rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-cta {
+            margin-left: 1rem;
+        }
+
+        /* Burger Menu Trigger */
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1001;
+            background: transparent;
+            border: none;
+        }
+
+        .burger span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-main);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 180px 0 100px 0;
+            display: flex;
+            align-items: center;
+            min-height: 90vh;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(0, 242, 254, 0.06);
+            border: 1px solid rgba(0, 242, 254, 0.15);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.05);
+            animation: pulse-slow 3s infinite alternate;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+            max-width: 580px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        /* Hero Right-side Tech Mockup */
+        .hero-visual {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-blob {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(135deg, rgba(0, 242, 254, 0.12) 0%, rgba(127, 0, 255, 0.12) 100%);
+            filter: blur(40px);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: morphing 15s ease-in-out infinite alternate;
+        }
+
+        .visual-card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.75rem;
+            width: 85%;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), var(--glow-primary);
+            z-index: 2;
+            transform: perspective(1000px) rotateY(-10deg) rotateX(10deg);
+            transition: var(--transition);
+        }
+
+        .visual-card:hover {
+            transform: perspective(1000px) rotateY(-3deg) rotateX(3deg);
+            border-color: var(--primary);
+        }
+
+        .card-header-mockup {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ef4444;
+        }
+
+        .card-dot:nth-child(2) {
+            background: #f59e0b;
+        }
+
+        .card-dot:nth-child(3) {
+            background: #10b981;
+        }
+
+        .mockup-header-title {
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-left: 0.5rem;
+        }
+
+        .mockup-image-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.25);
+            position: relative;
+            aspect-ratio: 16 / 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mockup-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: var(--transition);
+        }
+
+        .visual-card:hover .mockup-image {
+            opacity: 1;
+            transform: scale(1.03);
+        }
+
+        /* Services Section */
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem auto;
+        }
+
+        .section-tag {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.25rem;
+        }
+
+        /* Customized Glassmorphic Cards */
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem 2.25rem;
+            transition: var(--transition);
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.04) 0%, rgba(var(--secondary-rgb), 0.04) 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(var(--primary-rgb), 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(var(--primary-rgb), 0.05);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .service-card:hover .card-icon {
+            background: rgba(var(--primary-rgb), 0.1);
+            border-color: rgba(var(--primary-rgb), 0.3);
+            color: #fff;
+            box-shadow: var(--glow-primary);
+        }
+
+        .card-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: currentColor;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .card-desc {
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .card-features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1.5rem;
+        }
+
+        .card-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .card-feature-item svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* About Us Split Layout Section */
+        .about-split {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-content {
+            position: relative;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .about-bullets {
+            list-style: none;
+            margin: 2.25rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+
+        .about-bullet {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .about-bullet svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary);
+        }
+
+        /* Styled Placeholder Container for Image */
+        .about-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            border-radius: 28px;
+            border: 1px solid var(--border-color);
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(11, 15, 25, 0.9) 100%);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .about-image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at top right, rgba(0, 242, 254, 0.1) 0%, transparent 60%),
+                radial-gradient(ellipse at bottom left, rgba(127, 0, 255, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .about-image-wrapper:hover .about-image {
+            opacity: 1;
+            transform: scale(1.03);
+        }
+
+        .stat-badge {
+            position: absolute;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            padding: 1.25rem 1.75rem;
+            border-radius: 18px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            z-index: 3;
+            transition: var(--transition);
+        }
+
+        .stat-badge:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .stat-badge.badge-1 {
+            bottom: 30px;
+            left: -20px;
+        }
+
+        .stat-badge.badge-2 {
+            top: 40px;
+            right: -20px;
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+
+
+        /* Contact Form Section */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            position: relative;
+        }
+
+        .contact-intro-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info-list {
+            margin: 3rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .contact-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .contact-item-title {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Form Container */
+        .form-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 3.5rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.75rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(11, 15, 25, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+            background: rgba(11, 15, 25, 0.9);
+        }
+
+        select.form-input {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239ca3af'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.25rem center;
+            background-size: 1.5rem;
+            padding-right: 3rem;
+            cursor: pointer;
+        }
+
+        select.form-input option {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* Success Toast/Alert Overlay */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--bg-card);
+            border: 1px solid var(--primary);
+            border-radius: 16px;
+            padding: 1.25rem 2rem;
+            box-shadow: 0 15px 40px rgba(0, 242, 254, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 2000;
+            backdrop-filter: blur(12px);
+            transform: translateY(150%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            color: var(--primary);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .toast-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .toast-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .toast-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Corporate Footer */
+        footer {
+            background: #07090f;
+            border-top: 1px solid var(--border-color);
+            padding: 80px 0 40px 0;
+            position: relative;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 5px;
+        }
+
+        .footer-logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-desc {
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            max-width: 280px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            background: rgba(0, 242, 254, 0.05);
+            transform: translateY(-3px);
+            box-shadow: var(--glow-primary);
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .footer-title {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #fff;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        /* Divider & Bottom copyright */
+        .footer-bottom {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-bottom-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .footer-bottom-link:hover {
+            color: var(--primary);
+        }
+
+        /* Keyframe Animations */
+        @keyframes pulse-slow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 15px rgba(0, 242, 254, 0.08);
+            }
+
+            100% {
+                transform: scale(1.03);
+                box-shadow: 0 0 25px rgba(0, 242, 254, 0.2);
+            }
+        }
+
+        @keyframes morphing {
+            0% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            }
+
+            100% {
+                border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+            }
+        }
+
+        /* Responsive Breakpoints (Extensive Media Queries) */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+
+            .hero-grid {
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 15px;
+            }
+
+            .burger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: #0b0f19;
+                flex-direction: column;
+                padding: 4rem 2rem;
+                gap: 2rem;
+                align-items: flex-start;
+                transform: translateX(100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border-top: 1px solid var(--border-color);
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                transform: translateX(0);
+            }
+
+            .nav-cta {
+                margin-left: 0;
+                margin-top: 1.5rem;
+                width: 100%;
+            }
+
+            .nav-cta .btn {
+                width: 100%;
+            }
+
+            /* Burger Animation to 'X' */
+            .burger.active span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+
+            .burger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .burger.active span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+
+            .hero {
+                padding: 140px 0 80px 0;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+
+            .hero-subtitle {
+                margin: 0 auto 2.5rem auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                height: 350px;
+            }
+
+            .visual-card {
+                width: 100%;
+                transform: none !important;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-split {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .about-image-wrapper {
+                height: 380px;
+            }
+
+            .stat-badge.badge-1 {
+                left: 10px;
+                bottom: 20px;
+            }
+
+            .stat-badge.badge-2 {
+                right: 10px;
+                top: 20px;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .form-container {
+                padding: 2.25rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-grid>*:first-child {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.4rem;
+            }
+
+            .about-bullets {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid>*:first-child {
+                grid-column: span 1;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .footer-bottom-links {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Gradient definitions for SVG icons -->
+    <svg style="display: none;">
+        <defs>
+            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00F2FE" />
+                <stop offset="100%" stop-color="#7F00FF" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <div class="bg-grid"></div>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Navigation Header -->
+    <header id="header">
+        <div class="container nav-wrapper">
+            <a href="#home" class="logo">
+                <img src="VaritsLogo_TransparentBG_Gradient.png" alt="Varits.us Logo"
+                    style="height: 120px; width: auto; border-radius: 6px;">
+            </a>
+
+            <button class="burger" id="burger-menu-btn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="nav-menu-list">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li class="nav-cta"><a href="#contact" class="btn btn-primary">Get a Free Quote</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <svg style="width: 14px; height: 14px; fill: currentColor; margin-right: 4px;" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                    </svg>
+                    Enterprise Tech Solutions
+                </div>
+                <h1 class="hero-title">Architecting Resilient <span class="gradient-text">Enterprise</span> Operations
+                </h1>
+                <p class="hero-subtitle">providing industry-leading technology consulting, robust Enterprise
+                    Architecture design, tailored software solution builds, and elite tech staffing to accelerate your
+                    corporate agility.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+                    <a href="#services" class="btn btn-secondary">Explore Services</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-blob"></div>
+                <div class="visual-card">
+                    <div class="card-header-mockup">
+                        <div class="card-dot"></div>
+                        <div class="card-dot"></div>
+                        <div class="card-dot"></div>
+                        <span class="mockup-header-title">Enterprise Architecture Workflow</span>
+                    </div>
+                    <div class="mockup-image-container">
+                        <img src="ea_workflow.png" alt="Enterprise Architecture Workflow" class="mockup-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid Section -->
+    <section class="section-padding" id="services"
+        style="background: rgba(11, 15, 25, 0.4); position: relative; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Core Competencies</span>
+                <h2 class="section-title">Specialized Consulting Services</h2>
+                <p class="section-subtitle">We build robust architectural blueprints, deliver production-ready software
+                    solutions, and provision specialized personnel to scale your technology footprint.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-1.41 1.41C12.54 13.78 12 14.87 12 16h-2v-0.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H5c0-3.87 3.13-7 7-7s7 3.13 7 7c0 1.17-.45 2.23-1.17 3.07z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Enterprise Architecture Setup</h3>
+                    <p class="card-desc">Comprehensive organization design, governance implementation, TOGAF compliance
+                        structuring, and cloud adoption strategy matrices built to align IT with corporate revenue
+                        drivers.</p>
+                    <ul class="card-features-list">
+                        <li class="card-feature-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                            </svg>
+                            EA Office Charter Setup
+                        </li>
+                        <li class="card-feature-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                            </svg>
+                            TOGAF & Zachman Frameworks
+                        </li>
+                        <li class="card-feature-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                            </svg>
+                            Technology Stack Standardization
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Solution Consulting & Build</h3>
+                    <p class="card-desc">End-to-end full-lifecycle software delivery, cloud systems engineering, robust
+                        DevSecOps pipelines, legacy refactoring, and 24/7 SLA-backed managed systems support.</p>
+                    <ul class="card-features-list">
+                        <li class="card-feature-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                            </svg>
+                            Bespoke Software Engineering
+                        </li>
+                        <li class="card-feature-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                            </svg>
+                            Cloud Native builds (AWS, Azure)
+                        </li>
+                        <li class="card-feature-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                            </svg>
+                            Continuous SLA Monitoring
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.44 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Strategic Technical Staffing</h3>
+                    <p class="card-desc">Immediate provision of elite technical talent, certified solution architects,
+                        lead software engineers, Agile masters, and database administrators vetted for quick enterprise
+                        boarding.</p>
+                    <ul class="card-features-list">
+                        <li class="card-feature-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                            </svg>
+                            Technical Resource Auditing
+                        </li>
+                        <li class="card-feature-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                            </svg>
+                            High-Velocity Boarding Matrix
+                        </li>
+                        <li class="card-feature-item">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                            </svg>
+                            Augmented IT Contractors
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="section-padding" id="about">
+        <div class="container about-split">
+            <div class="about-content">
+                <span class="section-tag">About Varits</span>
+                <h2 class="about-title">Pioneering High-Performance Business Paradigms</h2>
+                <p class="about-text">We bridge the gap between abstract technical complexity and seamless
+                    business performance. With a relentless focus on operational excellence, we serve as trusted
+                    advisors to businesses looking to audit their technology, set up scalable architecture offices, and
+                    manage complex systems.</p>
+                <p class="about-text" style="color: var(--text-muted);">Our leadership brings decades of collective
+                    experience across enterprise architecture, bespoke application development, cloud-native
+                    deployments, and agile team recruitment strategies.</p>
+
+                <ul class="about-bullets">
+                    <li class="about-bullet">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Decades of Collective Experience
+                    </li>
+                    <li class="about-bullet">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Certified TOGAF Architects
+                    </li>
+                    <li class="about-bullet">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        SLA-Backed Build Support
+                    </li>
+                    <li class="about-bullet">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Quick-boarding IT Staffing
+                    </li>
+                </ul>
+            </div>
+
+            <div class="about-image-wrapper">
+                <img src="about_composite.png" alt="Operations Workflow and Performance Dashboard" class="about-image">
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Contact Form Section -->
+    <section class="section-padding" id="contact"
+        style="background: rgba(11, 15, 25, 0.4); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container contact-layout">
+            <div class="contact-info">
+                <span class="section-tag">Let's Connect</span>
+                <h2 class="contact-intro-title">Ready to Architect Your Future?</h2>
+                <p>Contact our technology consulting division today. Whether you need an organizational review of your
+                    Enterprise Architecture group, custom end-to-end solutions engineered, or specialized personnel
+                    placed, we are here to assist.</p>
+
+                <div class="contact-info-list">
+                    <!-- Location -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="contact-item-title">Principal Advisory Office</h4>
+                            <p class="contact-item-desc">Enterprise Consulting Group<br>Varits.us <br>Maryland, USA</p>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="contact-item-title">Direct Corporate Inquiry</h4>
+                            <p class="contact-item-desc">sales@varits.us<br>response within 24 business hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <form id="landing-contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="form-name" class="form-label">Full Name</label>
+                            <input type="text" id="form-name" class="form-input" placeholder="John Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="form-email" class="form-label">Corporate Email</label>
+                            <input type="email" id="form-email" class="form-input" placeholder="jdoe@company.com"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-category" class="form-label">Service Focus Area</label>
+                        <select id="form-category" class="form-input" required>
+                            <option value="" disabled selected>Select service area...</option>
+                            <option value="enterprise-architecture">Enterprise Architecture Setup</option>
+                            <option value="solution-build">Solution Consulting & Build</option>
+                            <option value="staffing">Strategic Staff Augmentation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="form-message" class="form-label">Message Details</label>
+                        <textarea id="form-message" class="form-input"
+                            placeholder="Briefly describe your enterprise needs..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Toast Alert -->
+    <div class="toast" id="success-toast">
+        <div class="toast-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+            </svg>
+        </div>
+        <div>
+            <div class="toast-title">Email Draft Created</div>
+            <div class="toast-desc">Please complete the task in your email client.</div>
+        </div>
+    </div>
+
+    <!-- Corporate Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#home" class="logo footer-logo">
+                        <img src="VaritsLogo_BlackBG.png" alt="Varits.us Logo"
+                            style="height: 44px; width: auto; border-radius: 6px;">
+                    </a>
+                    <p class="footer-desc">Premium Enterprise Architecture consulting, scalable solution systems design,
+                        full lifecycle builds, and high-tier technical staffing placement.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home" class="footer-link">Home Base</a></li>
+                        <li><a href="#services" class="footer-link">Core Services</a></li>
+                        <li><a href="#about" class="footer-link">Consulting Story</a></li>
+                        <li><a href="#contact" class="footer-link">Contact Desk</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services" class="footer-link">Enterprise Architecture</a></li>
+                        <li><a href="#services" class="footer-link">Solution Engineering</a></li>
+                        <li><a href="#services" class="footer-link">Professional Staffing</a></li>
+                        <li><a href="#services" class="footer-link">Operations Governance</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">&copy; 2026 VARITS.US. All rights reserved. Precision technology operations
+                    advisory.</div>
+                <ul class="footer-bottom-links">
+                    <li><a href="#" class="footer-bottom-link">Privacy Protocol</a></li>
+                    <li><a href="#" class="footer-bottom-link">Terms of Service</a></li>
+                    <li><a href="#" class="footer-bottom-link">SLA Commitments</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Header Scroll Interaction
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Burger Menu Interactivity
+        const burgerBtn = document.getElementById('burger-menu-btn');
+        const navMenu = document.getElementById('nav-menu-list');
+
+        burgerBtn.addEventListener('click', () => {
+            burgerBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when links are clicked and active state highlighting
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                burgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Scrollspy: Highlighting active navbar link based on current scroll position
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const scrollPos = window.scrollY + 120; // Offset for sticky nav height
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+
+
+        // Contact Form processing
+        const contactForm = document.getElementById('landing-contact-form');
+        const toast = document.getElementById('success-toast');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Extract form values
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const categorySelect = document.getElementById('form-category');
+            const category = categorySelect ? categorySelect.options[categorySelect.selectedIndex].text : '';
+
+            const websiteEl = document.getElementById('form-website');
+            const website = websiteEl ? websiteEl.value : '';
+
+            const message = document.getElementById('form-message').value;
+
+            // Construct mailto link
+            const emailTo = 'advisory@varits.us';
+            const subject = encodeURIComponent(`Varits Engagement Inquiry - ${category}`);
+
+            let bodyText = `Full Name: ${name}\n`;
+            bodyText += `Corporate Email: ${email}\n`;
+            if (website) {
+                bodyText += `Corporate Website: ${website}\n`;
+            }
+            bodyText += `\nMessage Details:\n${message}`;
+
+            const body = encodeURIComponent(bodyText);
+
+            // Open default mail client
+            window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+
+            // Show custom toast alert
+            if (toast) {
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4500);
+            }
+
+            // Reset fields
+            contactForm.reset();
+        });
+    </script>
+</body>
+
+</html>
