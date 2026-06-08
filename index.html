@@ -684,123 +684,215 @@
             transform: scale(1.03);
         }
 
-        .stat-badge {
-            position: absolute;
+        /* Capabilities Section Styles */
+        .capabilities-section {
+            background: rgba(15, 23, 42, 0.01);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .core-capability-card {
             background: var(--bg-light);
             border: 1px solid var(--border-color);
-            padding: 1.25rem 1.75rem;
-            border-radius: 18px;
-            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.06);
-            z-index: 3;
+            border-left: 5px solid var(--primary);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.03);
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
             transition: var(--transition);
         }
 
-        .stat-badge:hover {
-            transform: scale(1.05);
-            border-color: var(--primary);
+        .core-capability-card:hover {
+            border-left-color: var(--secondary);
+            box-shadow: 0 25px 50px rgba(15, 23, 42, 0.05);
         }
 
-        .stat-badge.badge-1 {
-            bottom: 30px;
-            left: -20px;
-        }
-
-        .stat-badge.badge-2 {
-            top: 40px;
-            right: -20px;
-        }
-
-        .stat-number {
-            font-family: var(--font-heading);
-            font-size: 2.2rem;
+        .core-capability-title {
+            font-size: 1.6rem;
+            margin-bottom: 1.25rem;
             font-weight: 800;
-            line-height: 1;
-            margin-bottom: 0.25rem;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .stat-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--text-muted);
+        .core-capability-text {
+            font-size: 1.1rem;
+            line-height: 1.75;
+            color: var(--text-main);
         }
 
-        /* FAQ accordion layout */
-        .faq-section {
-            background: rgba(15, 23, 42, 0.02);
-            border-top: 1px solid var(--border-color);
-            padding: 80px 0;
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 5rem;
         }
 
-        .faq-accordion {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-
-        .faq-item {
+        .capability-card {
             background: var(--bg-light);
             border: 1px solid var(--border-color);
-            border-radius: 18px;
-            overflow: hidden;
+            border-radius: 24px;
+            padding: 2.75rem 2.25rem;
             transition: var(--transition);
-            box-shadow: 0 4px 6px rgba(15, 23, 42, 0.02);
-        }
-
-        .faq-item:hover,
-        .faq-item.active {
-            border-color: var(--primary);
-        }
-
-        .faq-trigger {
-            width: 100%;
-            background: transparent;
-            border: none;
-            padding: 1.5rem 2rem;
-            text-align: left;
-            font-family: var(--font-heading);
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.015);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.015) 0%, rgba(var(--secondary-rgb), 0.015) 100%);
+            opacity: 0;
             transition: var(--transition);
         }
 
-        .faq-trigger svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-            transition: transform 0.3s ease;
+        .capability-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(var(--primary-rgb), 0.25);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.05);
         }
 
-        .faq-item.active .faq-trigger svg {
-            transform: rotate(180deg);
+        .capability-card:hover::before {
+            opacity: 1;
+        }
+
+        .capability-card .card-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(37, 99, 235, 0.04);
+            border: 1px solid rgba(37, 99, 235, 0.08);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.75rem;
             color: var(--primary);
+            transition: var(--transition);
+            z-index: 1;
         }
 
-        .faq-panel {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        .capability-card:hover .card-icon {
+            background: rgba(var(--primary-rgb), 0.08);
+            border-color: rgba(var(--primary-rgb), 0.2);
+            color: var(--primary);
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.08);
         }
 
-        .faq-content {
-            padding: 0 2rem 1.5rem 2rem;
+        .capability-card .card-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        .capability-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.85rem;
+            font-weight: 700;
+            z-index: 1;
+        }
+
+        .capability-desc {
             font-size: 0.95rem;
-            line-height: 1.6;
+            line-height: 1.65;
             color: var(--text-muted);
-            border-top: 1px solid rgba(15, 23, 42, 0.03);
-            padding-top: 1.25rem;
+            z-index: 1;
+        }
+
+        /* Frameworks Alignment Styles */
+        .frameworks-container {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 3.5rem;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.04);
+        }
+
+        .frameworks-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .framework-category {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .framework-category-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid rgba(15, 23, 42, 0.04);
+            padding-bottom: 0.5rem;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .framework-badge {
+            background: rgba(15, 23, 42, 0.03);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .framework-badge:hover {
+            background: rgba(37, 99, 235, 0.06);
+            border-color: rgba(37, 99, 235, 0.2);
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        .framework-category.full-width {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 1024px) {
+            .capabilities-grid {
+                gap: 2rem;
+            }
+            .frameworks-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .framework-category.full-width {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .capabilities-grid {
+                grid-template-columns: 1fr;
+            }
+            .core-capability-card {
+                padding: 2.25rem;
+            }
+            .frameworks-container {
+                padding: 2.25rem;
+            }
         }
 
         /* Contact Form Section */
@@ -1324,16 +1416,6 @@
 
 <body>
 
-    <!-- Gradient definitions for SVG icons -->
-    <svg style="display: none;">
-        <defs>
-            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#2563EB" />
-                <stop offset="100%" stop-color="#4F46E5" />
-            </linearGradient>
-        </defs>
-    </svg>
-
     <div class="bg-grid"></div>
     <div class="bg-glow-1"></div>
     <div class="bg-glow-2"></div>
@@ -1354,9 +1436,10 @@
             </button>
 
             <ul class="nav-menu" id="nav-menu-list">
-                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#capabilities" class="nav-link active">Capabilities</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li class="nav-cta"><a href="#contact" class="btn btn-primary">Get a Free Quote</a></li>
             </ul>
@@ -1567,7 +1650,180 @@
         </div>
     </section>
 
+    <!-- Capabilities Section -->
+    <section class="section-padding capabilities-section" id="capabilities">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Capabilities</span>
+                <h2 class="section-title">Institutional Capability Statement</h2>
+                <p class="section-subtitle">We engineer agile, secure, and future-ready IT ecosystems designed to support large-scale modernization initiatives for government agencies and enterprise organizations.</p>
+            </div>
 
+            <!-- Core Capability Card -->
+            <div class="core-capability-card">
+                <h3 class="core-capability-title">Core Capability: Enterprise Architecture, Agile Delivery & Digital Transformation</h3>
+                <p class="core-capability-text">Specializing in highly regulated environments—including Healthcare, Finance, Public Utilities, and Government Services—we bridge the gap between complex legacy infrastructures, modern cloud environments, and rapid technical execution. These institutional capabilities consistently enable clients to mitigate technical debt, optimize technology investments, streamline multi-vendor collaborations, and align massive IT portfolios with long-term strategic mission goals and public sector mandates.</p>
+            </div>
+
+            <!-- Capabilities Grid -->
+            <div class="capabilities-grid">
+                
+                <!-- Card 1 -->
+                <div class="capability-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <h4 class="capability-title">AI-Driven Governance & Predictive Compliance</h4>
+                    <p class="capability-desc">We deploy automated compliance frameworks using patent-pending Continuous Architecture Governance (CAG) methodologies across the entire SDLC. RAG-powered Conversational AI Agents accelerate secure, well-architected solutions, while real-time validation pipelines maximize delivery speed and regulatory adherence. Through a mature Architecture-as-a-Service (AaaS) model, we operate formal Architecture Review Boards (ARB) to standardize assets and drive enterprise-wide savings.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="capability-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                        </svg>
+                    </div>
+                    <h4 class="capability-title">Cloud Architecture & Legacy Modernization</h4>
+                    <p class="capability-desc">We design and execute secure cloud migration blueprints optimized for AWS. Our workflows streamline complex application roadmaps to decommission legacy systems, modernize core business logic, and de-risk high-stakes mainframe-to-cloud transitions. We lead technical discovery sessions, run architectural workshops, and author authoritative reference patterns to ensure stakeholder alignment and cloud readiness.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="capability-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 9h-4V3H9v6H5c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm-9-4h4v4h-4V5zm-4 13v-6h3v6H6zm12 0h-3v-6h3v6z"/>
+                        </svg>
+                    </div>
+                    <h4 class="capability-title">Modern Integration & Platform Management</h4>
+                    <p class="capability-desc">We design and deploy scalable API management layers via Apigee and high-throughput, event-driven streaming frameworks using Kafka. Our interoperability expertise enables secure, compliant data exchange using FHIR and SOA standards. We maintain platform health and application performance (APM) using Dynatrace, providing custom executive dashboards for real-time systemic insights.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="capability-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zm0-8h14V7H7v2z"/>
+                        </svg>
+                    </div>
+                    <h4 class="capability-title">Agile Product Management & Scale Execution</h4>
+                    <p class="capability-desc">We drive Agile transformations, direct long-term product roadmaps, and coordinate complex Program Increment (PI) planning events. As a central liaison between business units and engineering teams, we specialize in cross-functional coordination, dependency mapping, and risk mitigation. We manage backlog grooming, feature elaboration, and user story definitions to ensure on-time delivery.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="capability-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+                        </svg>
+                    </div>
+                    <h4 class="capability-title">Cloud Migration Testing & Quality Assurance Automation</h4>
+                    <p class="capability-desc">We execute high-stakes cloud migration testing and organize multi-vendor environments for seamless validation. We design comprehensive UAT blueprints, verifying production environments through integration, smoke, and regression test suites. Using a Requirements Traceability Matrix (RTM), we maintain total requirement visibility and establish Defect Review Boards for rapid bug resolution.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="capability-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+                        </svg>
+                    </div>
+                    <h4 class="capability-title">Requirements Engineering & Process Excellence</h4>
+                    <p class="capability-desc">We facilitate deep requirement elicitation, joint application design (JAD) workshops, and structured system walkthroughs. Combining business systems analysis with Six Sigma, we drive continuous process improvement and design user-centric workflows. We maintain strict compliance with CMMI standards, ensuring all design specifications and user documents are audit-ready.</p>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="capability-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                        </svg>
+                    </div>
+                    <h4 class="capability-title">Identity Management & Data Insights Modernization</h4>
+                    <p class="capability-desc">We execute secure identity management overhauls and core legacy-to-web transitions within highly regulated frameworks. Using platforms like MicroStrategy and PowerBI, we extract operational insights and map data integrity patterns across databases. This ensures modernized applications achieve maximum availability, robust access controls, and full cross-platform accessibility.</p>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="capability-card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.44 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                        </svg>
+                    </div>
+                    <h4 class="capability-title">Scaled Delivery & Resource Optimization</h4>
+                    <p class="capability-desc">We embed technical governance within SAFe Program Increment (PI) planning cycles, driving a proactive 'shift-left' approach to risk management. We architect and execute high-stakes, multi-year initiatives valued at over $100M. We maximize efficiency by scaling and mentoring technical communities of over 250+ architects and managing technology investments exceeding $10M.</p>
+                </div>
+
+            </div>
+
+            <!-- Framework Alignment -->
+            <div class="frameworks-container">
+                <div class="section-header" style="margin-bottom: 3rem; text-align: left;">
+                    <span class="section-tag" style="margin-bottom: 0.5rem;">Frameworks</span>
+                    <h3 class="section-title" style="font-size: 2rem;">Framework Alignment & Standards</h3>
+                    <p class="section-subtitle" style="margin: 0; max-width: 100%;">Our enterprise capabilities strictly adhere to internationally recognized technical frameworks, standards, and methodologies.</p>
+                </div>
+
+                <div class="frameworks-grid">
+                    <!-- Category 1 -->
+                    <div class="framework-category">
+                        <h4 class="framework-category-title">Architecture & Product Delivery</h4>
+                        <div class="badge-list">
+                            <span class="framework-badge">TOGAF</span>
+                            <span class="framework-badge">SAFe (Scaled Agile)</span>
+                            <span class="framework-badge">Agile Product Models (POPM)</span>
+                            <span class="framework-badge">Certified Scrum Master (CSM)</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 2 -->
+                    <div class="framework-category">
+                        <h4 class="framework-category-title">Cloud, Quality & Infrastructure</h4>
+                        <div class="badge-list">
+                            <span class="framework-badge">AWS Well-Architected Framework</span>
+                            <span class="framework-badge">DevSecOps Toolchains</span>
+                            <span class="framework-badge">Value Stream Management Platforms (VSMP)</span>
+                            <span class="framework-badge">CMMI Standards</span>
+                            <span class="framework-badge">Six Sigma Process Improvement</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 3 -->
+                    <div class="framework-category">
+                        <h4 class="framework-category-title">Operations & Domain Compliance</h4>
+                        <div class="badge-list">
+                            <span class="framework-badge">ITIL</span>
+                            <span class="framework-badge">SOA Governance</span>
+                            <span class="framework-badge">CMS Interoperability Mandates</span>
+                            <span class="framework-badge">FHIR</span>
+                            <span class="framework-badge">AHIP</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 4 -->
+                    <div class="framework-category">
+                        <h4 class="framework-category-title">Lifecycle Management Tooling</h4>
+                        <div class="badge-list">
+                            <span class="framework-badge">Jira / Jira Align</span>
+                            <span class="framework-badge">HP ALM / Quality Center</span>
+                            <span class="framework-badge">DOORS Requirements Management</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 5 -->
+                    <div class="framework-category full-width">
+                        <h4 class="framework-category-title">Academic & Professional Foundation</h4>
+                        <div class="badge-list">
+                            <span class="framework-badge">Master's Degree in Computer Science</span>
+                            <span class="framework-badge">Business Administration (MBA)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Contact Form Section -->
     <section class="section-padding" id="contact"
@@ -1701,6 +1957,7 @@
                         <li><a href="#home" class="footer-link">Home Base</a></li>
                         <li><a href="#services" class="footer-link">Core Services</a></li>
                         <li><a href="#about" class="footer-link">Consulting Story</a></li>
+                        <li><a href="#capabilities" class="footer-link">Capability Statement</a></li>
                         <li><a href="#contact" class="footer-link">Contact Desk</a></li>
                     </ul>
                 </div>
@@ -1708,10 +1965,10 @@
                 <div>
                     <h4 class="footer-title">Services</h4>
                     <ul class="footer-links">
-                        <li><a href="#services" class="footer-link">Enterprise Architecture</a></li>
-                        <li><a href="#services" class="footer-link">Solution Engineering</a></li>
-                        <li><a href="#services" class="footer-link">Professional Staffing</a></li>
-                        <li><a href="#services" class="footer-link">Operations Governance</a></li>
+                        <li><a href="index.html#services" class="footer-link">Enterprise Architecture</a></li>
+                        <li><a href="index.html#services" class="footer-link">Solution Engineering</a></li>
+                        <li><a href="index.html#services" class="footer-link">Professional Staffing</a></li>
+                        <li><a href="index.html#services" class="footer-link">Operations Governance</a></li>
                     </ul>
                 </div>
             </div>
@@ -1776,27 +2033,6 @@
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${current}`) {
                     link.classList.add('active');
-                }
-            });
-        });
-
-        // FAQ Collapsible accordion logic
-        document.querySelectorAll('.faq-trigger').forEach(trigger => {
-            trigger.addEventListener('click', () => {
-                const item = trigger.parentNode;
-                const panel = trigger.nextElementSibling;
-                const isActive = item.classList.contains('active');
-
-                // Close all FAQ panels
-                document.querySelectorAll('.faq-item').forEach(otherItem => {
-                    otherItem.classList.remove('active');
-                    otherItem.querySelector('.faq-panel').style.maxHeight = null;
-                });
-
-                // Toggle active item
-                if (!isActive) {
-                    item.classList.add('active');
-                    panel.style.maxHeight = panel.scrollHeight + "px";
                 }
             });
         });
