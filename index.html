@@ -198,6 +198,11 @@
             transform: translateY(-2px);
         }
 
+        .btn-sm {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.85rem;
+        }
+
         /* Navigation Header */
         header {
             position: fixed;
@@ -810,76 +815,9 @@
             z-index: 1;
         }
 
-        /* Frameworks Alignment Styles */
-        .frameworks-container {
-            background: var(--bg-light);
-            border: 1px solid var(--border-color);
-            border-radius: 28px;
-            padding: 3.5rem;
-            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.04);
-        }
-
-        .frameworks-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-        }
-
-        .framework-category {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .framework-category-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-            color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 2px solid rgba(15, 23, 42, 0.04);
-            padding-bottom: 0.5rem;
-        }
-
-        .badge-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
-        .framework-badge {
-            background: rgba(15, 23, 42, 0.03);
-            border: 1px solid rgba(15, 23, 42, 0.06);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-family: var(--font-heading);
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            transition: var(--transition);
-        }
-
-        .framework-badge:hover {
-            background: rgba(37, 99, 235, 0.06);
-            border-color: rgba(37, 99, 235, 0.2);
-            color: var(--primary);
-            transform: translateY(-1px);
-        }
-
-        .framework-category.full-width {
-            grid-column: span 2;
-        }
-
         @media (max-width: 1024px) {
             .capabilities-grid {
                 gap: 2rem;
-            }
-            .frameworks-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .framework-category.full-width {
-                grid-column: span 1;
             }
         }
 
@@ -888,9 +826,6 @@
                 grid-template-columns: 1fr;
             }
             .core-capability-card {
-                padding: 2.25rem;
-            }
-            .frameworks-container {
                 padding: 2.25rem;
             }
         }
@@ -1438,10 +1373,10 @@
             <ul class="nav-menu" id="nav-menu-list">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#capabilities" class="nav-link active">Capabilities</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li class="nav-cta"><a href="#contact" class="btn btn-primary">Get a Free Quote</a></li>
+                <li class="nav-cta"><a href="#contact" class="btn btn-primary btn-sm">Contact Us</a></li>
             </ul>
         </div>
     </header>
@@ -1463,7 +1398,7 @@
                     Architecture design, tailored software solution builds, and elite tech staffing to accelerate your
                     corporate agility.</p>
                 <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+                    <a href="#contact" class="btn btn-primary">Contact Us</a>
                     <a href="#services" class="btn btn-secondary">Explore Services</a>
                 </div>
             </div>
@@ -1602,54 +1537,6 @@
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section class="section-padding" id="about">
-        <div class="container about-split">
-            <div class="about-content">
-                <span class="section-tag">About Varits</span>
-                <h2 class="about-title">Pioneering High-Performance Business Paradigms</h2>
-                <p class="about-text">We bridge the gap between abstract technical complexity and seamless
-                    business performance. With a relentless focus on operational excellence, we serve as trusted
-                    advisors to businesses looking to audit their technology, set up scalable architecture offices, and
-                    manage complex systems.</p>
-                <p class="about-text" style="color: var(--text-muted);">Our leadership brings decades of collective
-                    experience across enterprise architecture, bespoke application development, cloud-native
-                    deployments, and agile team recruitment strategies.</p>
-
-                <ul class="about-bullets">
-                    <li class="about-bullet">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                        </svg>
-                        Decades of Collective Experience
-                    </li>
-                    <li class="about-bullet">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                        </svg>
-                        Certified TOGAF Architects
-                    </li>
-                    <li class="about-bullet">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                        </svg>
-                        SLA-Backed Build Support
-                    </li>
-                    <li class="about-bullet">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                        </svg>
-                        Quick-boarding IT Staffing
-                    </li>
-                </ul>
-            </div>
-
-            <div class="about-image-wrapper">
-                <img src="about_composite.png" alt="Operations Workflow and Performance Dashboard" class="about-image">
-            </div>
-        </div>
-    </section>
-
     <!-- Capabilities Section -->
     <section class="section-padding capabilities-section" id="capabilities">
         <div class="container">
@@ -1757,70 +1644,53 @@
                 </div>
 
             </div>
+        </div>
+    </section>
 
-            <!-- Framework Alignment -->
-            <div class="frameworks-container">
-                <div class="section-header" style="margin-bottom: 3rem; text-align: left;">
-                    <span class="section-tag" style="margin-bottom: 0.5rem;">Frameworks</span>
-                    <h3 class="section-title" style="font-size: 2rem;">Framework Alignment & Standards</h3>
-                    <p class="section-subtitle" style="margin: 0; max-width: 100%;">Our enterprise capabilities strictly adhere to internationally recognized technical frameworks, standards, and methodologies.</p>
-                </div>
+    <!-- About Us Section -->
+    <section class="section-padding" id="about">
+        <div class="container about-split">
+            <div class="about-content">
+                <span class="section-tag">About Varits</span>
+                <h2 class="about-title">Pioneering High-Performance Business Paradigms</h2>
+                <p class="about-text">We bridge the gap between abstract technical complexity and seamless
+                    business performance. With a relentless focus on operational excellence, we serve as trusted
+                    advisors to businesses looking to audit their technology, set up scalable architecture offices, and
+                    manage complex systems.</p>
+                <p class="about-text" style="color: var(--text-muted);">Our leadership brings decades of collective
+                    experience across enterprise architecture, bespoke application development, cloud-native
+                    deployments, and agile team recruitment strategies.</p>
 
-                <div class="frameworks-grid">
-                    <!-- Category 1 -->
-                    <div class="framework-category">
-                        <h4 class="framework-category-title">Architecture & Product Delivery</h4>
-                        <div class="badge-list">
-                            <span class="framework-badge">TOGAF</span>
-                            <span class="framework-badge">SAFe (Scaled Agile)</span>
-                            <span class="framework-badge">Agile Product Models (POPM)</span>
-                            <span class="framework-badge">Certified Scrum Master (CSM)</span>
-                        </div>
-                    </div>
+                <ul class="about-bullets">
+                    <li class="about-bullet">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Decades of Collective Experience
+                    </li>
+                    <li class="about-bullet">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Certified TOGAF Architects
+                    </li>
+                    <li class="about-bullet">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        SLA-Backed Build Support
+                    </li>
+                    <li class="about-bullet">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                        </svg>
+                        Quick-boarding IT Staffing
+                    </li>
+                </ul>
+            </div>
 
-                    <!-- Category 2 -->
-                    <div class="framework-category">
-                        <h4 class="framework-category-title">Cloud, Quality & Infrastructure</h4>
-                        <div class="badge-list">
-                            <span class="framework-badge">AWS Well-Architected Framework</span>
-                            <span class="framework-badge">DevSecOps Toolchains</span>
-                            <span class="framework-badge">Value Stream Management Platforms (VSMP)</span>
-                            <span class="framework-badge">CMMI Standards</span>
-                            <span class="framework-badge">Six Sigma Process Improvement</span>
-                        </div>
-                    </div>
-
-                    <!-- Category 3 -->
-                    <div class="framework-category">
-                        <h4 class="framework-category-title">Operations & Domain Compliance</h4>
-                        <div class="badge-list">
-                            <span class="framework-badge">ITIL</span>
-                            <span class="framework-badge">SOA Governance</span>
-                            <span class="framework-badge">CMS Interoperability Mandates</span>
-                            <span class="framework-badge">FHIR</span>
-                            <span class="framework-badge">AHIP</span>
-                        </div>
-                    </div>
-
-                    <!-- Category 4 -->
-                    <div class="framework-category">
-                        <h4 class="framework-category-title">Lifecycle Management Tooling</h4>
-                        <div class="badge-list">
-                            <span class="framework-badge">Jira / Jira Align</span>
-                            <span class="framework-badge">HP ALM / Quality Center</span>
-                            <span class="framework-badge">DOORS Requirements Management</span>
-                        </div>
-                    </div>
-
-                    <!-- Category 5 -->
-                    <div class="framework-category full-width">
-                        <h4 class="framework-category-title">Academic & Professional Foundation</h4>
-                        <div class="badge-list">
-                            <span class="framework-badge">Master's Degree in Computer Science</span>
-                            <span class="framework-badge">Business Administration (MBA)</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="about-image-wrapper">
+                <img src="about_composite.png" alt="Operations Workflow and Performance Dashboard" class="about-image">
             </div>
         </div>
     </section>
@@ -1956,8 +1826,8 @@
                     <ul class="footer-links">
                         <li><a href="#home" class="footer-link">Home Base</a></li>
                         <li><a href="#services" class="footer-link">Core Services</a></li>
-                        <li><a href="#about" class="footer-link">Consulting Story</a></li>
                         <li><a href="#capabilities" class="footer-link">Capability Statement</a></li>
+                        <li><a href="#about" class="footer-link">Consulting Story</a></li>
                         <li><a href="#contact" class="footer-link">Contact Desk</a></li>
                     </ul>
                 </div>
