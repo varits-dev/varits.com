@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Varits.us | Enterprise Architecture & Tech Consulting</title>
+    <title>Varits.us | Enterprise Architecture & Solutions | Maryland Small Business & MBE Certified</title>
     <meta name="description"
-        content="Varits.us is a premium technology consulting partner specializing in Enterprise Architecture setup, custom solution build & support, and strategic IT staffing.">
+        content="Varits.us is a Maryland Small Business Certified (SBR) and Minority Business Enterprise (MBE) technology consulting partner specializing in Enterprise Architecture, cloud-native solution builds, and strategic IT staffing.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -329,42 +329,169 @@
             z-index: 2;
         }
 
-        .hero-tag {
+        /* Hero Badge Group & Certification Badges */
+        .hero-badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1.2rem;
-            background: rgba(37, 99, 235, 0.05);
-            border: 1px solid rgba(37, 99, 235, 0.1);
+            padding: 0.45rem 1.1rem;
             border-radius: 50px;
-            color: var(--primary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.03em;
             text-transform: uppercase;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.02);
-            animation: pulse-slow 3s infinite alternate;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            transition: var(--transition);
+        }
+
+        .hero-badge:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-badge-sbr {
+            background: rgba(37, 99, 235, 0.07);
+            border: 1px solid rgba(37, 99, 235, 0.22);
+            color: var(--primary);
+        }
+
+        .hero-badge-mbe {
+            background: rgba(79, 70, 229, 0.07);
+            border: 1px solid rgba(79, 70, 229, 0.22);
+            color: var(--secondary);
+        }
+
+        .hero-badge .badge-icon {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+            flex-shrink: 0;
         }
 
         .hero-title {
-            font-size: 3.8rem;
-            line-height: 1.1;
+            font-size: 3.6rem;
+            line-height: 1.12;
             margin-bottom: 1.5rem;
             font-weight: 800;
+            letter-spacing: -0.025em;
         }
 
         .hero-subtitle {
-            font-size: 1.15rem;
-            margin-bottom: 2.5rem;
-            max-width: 580px;
-            line-height: 1.7;
+            font-size: 1.125rem;
+            margin-bottom: 2.25rem;
+            max-width: 620px;
+            line-height: 1.75;
+            color: var(--text-muted);
+        }
+
+        .hero-subtitle strong {
+            color: var(--text-main);
+            font-weight: 600;
         }
 
         .hero-actions {
             display: flex;
             gap: 1.25rem;
             flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* Hero Trust & Solutions Proof Bar */
+        .hero-trust-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.65rem 1.4rem;
+            margin-top: 2.25rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .trust-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .trust-icon {
+            width: 16px;
+            height: 16px;
+            color: #10b981;
+            flex-shrink: 0;
+        }
+
+        /* Floating Certified Pill on Visual Card */
+        .floating-cert-badge {
+            position: absolute;
+            bottom: -16px;
+            left: -15px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 0.75rem 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+            z-index: 5;
+            animation: float-slow 4s ease-in-out infinite alternate;
+        }
+
+        .cert-badge-pulse {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-ring 2s infinite;
+            flex-shrink: 0;
+        }
+
+        .cert-badge-title {
+            font-family: var(--font-heading);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.25;
+        }
+
+        .cert-badge-sub {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        @keyframes float-slow {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-5px);
+            }
         }
 
         /* Hero Right-side Mockup */
@@ -1245,14 +1372,26 @@
                 transform: translateY(-9px) rotate(-45deg);
             }
 
+            .logo img {
+                height: 52px !important;
+            }
+
+            .nav-wrapper {
+                height: 65px;
+            }
+
             .hero {
-                padding: 140px 0 80px 0;
+                padding: 105px 0 60px 0;
             }
 
             .hero-grid {
                 grid-template-columns: 1fr;
                 gap: 4rem;
                 text-align: center;
+            }
+
+            .hero-badge-group {
+                justify-content: center;
             }
 
             .hero-subtitle {
@@ -1263,6 +1402,11 @@
                 justify-content: center;
             }
 
+            .hero-trust-bar {
+                justify-content: center;
+                gap: 1rem 1.5rem;
+            }
+
             .hero-visual {
                 height: 350px;
             }
@@ -1270,6 +1414,15 @@
             .visual-card {
                 width: 100%;
                 transform: none !important;
+            }
+
+            .floating-cert-badge {
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -14px;
+                width: max-content;
+                max-width: 90%;
+                animation: none;
             }
 
             .services-grid {
@@ -1371,9 +1524,9 @@
             </button>
 
             <ul class="nav-menu" id="nav-menu-list">
-                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#capabilities" class="nav-link active">Capabilities</a></li>
+                <li><a href="#capabilities" class="nav-link">Capabilities</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li class="nav-cta"><a href="#contact" class="btn btn-primary btn-sm">Contact Us</a></li>
@@ -1385,21 +1538,61 @@
     <section class="hero" id="home">
         <div class="container hero-grid">
             <div class="hero-content">
-                <div class="hero-tag">
-                    <svg style="width: 14px; height: 14px; fill: currentColor; margin-right: 4px;" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-                    </svg>
-                    Enterprise Tech Solutions
+                <!-- Dual Certification Badges -->
+                <div class="hero-badge-group">
+                    <div class="hero-badge hero-badge-sbr">
+                        <svg class="badge-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                        Maryland Small Business Certified (SBR)
+                    </div>
+                    <div class="hero-badge hero-badge-mbe">
+                        <svg class="badge-icon" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l2.4 7.4h7.6l-6.1 4.5 2.3 7.1-6.2-4.6-6.2 4.6 2.3-7.1-6.1-4.5h7.6z" />
+                        </svg>
+                        Minority Business Enterprise (MBE)
+                    </div>
                 </div>
-                <h1 class="hero-title">Architecting Resilient <span class="gradient-text">Enterprise</span> Operations
-                </h1>
-                <p class="hero-subtitle">We provide industry-leading technology consulting, robust Enterprise
-                    Architecture design, tailored software solution builds, and elite tech staffing to accelerate your
-                    corporate agility.</p>
+
+                <h1 class="hero-title">Architecting Resilient <span class="gradient-text">Enterprise Systems</span> & Modern Solutions</h1>
+
+                <p class="hero-subtitle">
+                    Varits is a <strong>Maryland Small Business Certified (SBR)</strong> and <strong>Minority Business Enterprise (MBE)</strong> technology partner. We bridge complex architectures with rapid execution—delivering robust Enterprise Architecture governance, tailored cloud-native software builds, and strategic technical staffing to modernize mission-critical operations for government agencies and commercial enterprises.
+                </p>
+
                 <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary">Contact Us</a>
-                    <a href="#services" class="btn btn-secondary">Explore Services</a>
+                    <a href="#contact" class="btn btn-primary">Schedule Consultation</a>
+                    <a href="#services" class="btn btn-secondary">Explore Solutions</a>
+                </div>
+
+                <!-- Proof points connecting to Solutions and Institutional Capabilities -->
+                <div class="hero-trust-bar">
+                    <div class="trust-item">
+                        <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>EA Governance & TOGAF® Blueprints</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>Cloud-Native & Bespoke Software Builds</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg class="trust-icon" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>Strategic Staffing & Agile Scale</span>
+                    </div>
                 </div>
             </div>
 
@@ -1415,6 +1608,14 @@
                     <div class="mockup-image-container">
                         <!-- Custom image asset -->
                         <img src="ea_workflow.png" alt="Enterprise Architecture Workflow" class="mockup-image">
+                    </div>
+                    <!-- Floating Certified Badge -->
+                    <div class="floating-cert-badge">
+                        <div class="cert-badge-pulse"></div>
+                        <div>
+                            <div class="cert-badge-title">Maryland Certified SBR & MBE</div>
+                            <div class="cert-badge-sub">State & Enterprise Modernization Ready</div>
+                        </div>
                     </div>
                 </div>
             </div>
